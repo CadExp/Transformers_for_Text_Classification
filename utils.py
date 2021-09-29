@@ -281,7 +281,15 @@ class THUNewsProcessor(DataProcessor):
 
     def get_labels(self):
         """设置当前数据集的标签"""
-        return ["体育", "财经", "房产", "家居", "教育"]
+        return [
+            "财税扶持",
+            "资质认定",
+            "资金补贴",
+            "人才激励",
+            "课题项目",
+            "政府采购",
+            "赛事活动",
+        ]
 
     def _create_examples(self, lines, set_type):
         """Creates examples for the training/dev/test sets."""
@@ -292,7 +300,7 @@ class THUNewsProcessor(DataProcessor):
             guid = "%s-%s" % (set_type, i)
             if set_type == 'test':
                 text_a = line[0]
-                label = '体育'
+                label = '财税扶持'
             else:
                 label = line[0]
                 text_a = line[1]
