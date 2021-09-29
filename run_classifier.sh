@@ -1,13 +1,13 @@
 export CUDA_VISIBLE_DEVICES=0
 
-TASK_NAME="THUNews"
+TASK_NAME="policy"
 
 python run.py \
   --task_name=$TASK_NAME \
   --model_type=albert \
   --model_name_or_path ./pretrained_models/albert_xlarge_183k \
-  --data_dir ./dataset/THUNews/5_5000 \
-  --output_dir ./results/THUNews/albert \
+  --data_dir ./dataset/policy \
+  --output_dir ./results/policy/albert \
   --do_train \
   --do_eval \
   --do_predict \
