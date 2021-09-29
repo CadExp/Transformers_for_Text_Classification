@@ -312,13 +312,13 @@ class THUNewsProcessor(DataProcessor):
 
 
 tasks_num_labels = {
-    "thunews": 7,
+    "policy": 7,
 }
 
 processors = {
-    "thunews": THUNewsProcessor,
+    "policy": THUNewsProcessor,
 }
 
 output_modes = {
-    "thunews": "classification",
+    "policy": "classification",
 }

@@ -69,7 +69,7 @@ bash run_classifier.sh
 
 
 # Environment
-
+pip install boto3
 - one 2080Ti, 12GB RAM
 - Python: 3.6.5
 - PyTorch: 1.3.1
