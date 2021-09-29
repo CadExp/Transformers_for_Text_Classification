@@ -312,7 +312,7 @@ class THUNewsProcessor(DataProcessor):
 
 
 tasks_num_labels = {
-    "thunews": 5,
+    "thunews": 7,
 }
 
 processors = {
