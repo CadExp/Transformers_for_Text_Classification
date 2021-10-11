@@ -269,15 +269,15 @@ class THUNewsProcessor(DataProcessor):
 
     def get_train_examples(self, data_dir):
         """See base class."""
-        return self._create_examples(self._read_csv(os.path.join(data_dir, "train.csv")), "train")
+        return self._create_examples(os.path.join(data_dir, "train.csv"), "train")
 
     def get_dev_examples(self, data_dir):
         """See base class."""
-        return self._create_examples(self._read_csv(os.path.join(data_dir, "dev.csv")), "dev")
+        return self._create_examples(os.path.join(data_dir, "dev.csv"), "dev")
 
     def get_test_examples(self, data_dir):
         """See base class."""
-        return self._create_examples(self._read_csv(os.path.join(data_dir, "test.csv")), "test")
+        return self._create_examples(os.path.join(data_dir, "test.csv"), "test")
 
     def get_labels(self):
         """设置当前数据集的标签"""
@@ -291,22 +291,20 @@ class THUNewsProcessor(DataProcessor):
             "赛事活动",
         ]
 
-    def _create_examples(self, lines, set_type):
+    def _create_examples(self, path, set_type):
         """Creates examples for the training/dev/test sets."""
+        import pandas as pd
+        df = pd.read_csv(path)
         examples = []
-        for (i, line) in enumerate(lines):
-            if i == 0:
-                continue
+        for i in range(len(df)):
             guid = "%s-%s" % (set_type, i)
+            row = df.iloc[i]
+            text_a = row["text"]
             if set_type == 'test':
-                text_a = line[0]
                 label = '财税扶持'
             else:
-                label = line[0]
-                text_a = line[1]
-                #如有两段文本, 也可以设置text_b
+                label = row["label"]
             examples.append(InputExample(guid=guid, text_a=text_a, text_b=None, label=label))
-
         return examples
 
 
